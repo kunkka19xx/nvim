@@ -9,7 +9,7 @@ vim.cmd("set cursorline")
 vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "white" })
 vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#ead84e" })
 vim.api.nvim_set_option("clipboard", "unnamed")
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 -- move selected lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
