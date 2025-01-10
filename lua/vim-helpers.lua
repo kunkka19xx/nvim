@@ -10,3 +10,7 @@ vim.keymap.set("n", "<leader>ce", function()
         print("No diagnostic at cursor")
     end
 end, { noremap = true, silent = true })
+
+-- go to errors in a file :/
+vim.keymap.set("n", "<leader>ne", vim.diagnostic.goto_next) -- next err
+vim.keymap.set("n", "<leader>pe", vim.diagnostic.goto_prev) -- previous err
