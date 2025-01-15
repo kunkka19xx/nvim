@@ -1,0 +1,188 @@
+## 1.Install nix
+
+```shell
+curl -L https://nixos.org/nix/install | sh
+```
+
+- Check version
+
+```shell
+nix --version
+```
+
+#### Potential issue:
+
+Nix path is not added into .zshrc properly
+
+-> remove
+
+```shell
+sudo rm -rf /nix
+sudo rm -f /etc/zshrc.backup-before-nix
+```
+
+then reinstall with zsh as main profile
+
+```shell
+curl -L https://nixos.org/nix/install | sh -s -- --no-modify-profile
+```
+
+_note:_ we need to exit the current shell session, open again to use nix
+
+#### Install neofetch
+
+```shell
+nix-shell -p neofetch --run neofetch
+```
+
+## 2. Nix-darwin module
+
+1. Create nix dir (if without stow)
+
+```shell
+mkdir nix
+```
+
+```shell
+cd nix
+mkidr ~/.config/nix
+```
+
+2. Create nix dir (if with stow, 0-1 1-0, we can install gnu stow via nix)
+
+```shell
+mkdir dotfiles/nix
+```
+
+```shell
+cd dotfiles/nix
+mkidr ~/.config/nix
+```
+
+_note:_ I go for the 1st criteria, after confirming that nix works in a stable state -> I will migrate it to my dotfiles
+
+### 1. Flake (Package manager)
+
+- There are 2 approaches: Channels, Flake
+  (I prefer Flake)
+
+```shell
+nix flake init -t nix-darwin
+```
+
+- I will use experimental feature flag
+
+```shell
+nix flake init -t nix-darwin --extra-experimental-features "nix-command flakes"
+```
+
+- after this command, a file flake.nix will be added.
+- open and add your setting :)
+
+## 2. Config
+
+[wiki](https://wiki.nixos.org/wiki/Flakes)
+
+- change darwinConfigurations
+  ex:
+
+```nix
+{
+    # Build darwin flake using:
+    # $ darwin-rebuild build --flake .#simple
+    darwinConfigurations."your-config" = nix-darwin.lib.darwinSystem {
+      modules = [ configuration ];
+    };
+
+    # Expose the package set, including overlays, for convenience
+    darwinPackages = self.darwinConfigurations."your-config".pkgs;
+};
+```
+
+- Install nix-darwin
+
+```shell
+nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/nix#your-config
+
+```
+
+- If there are existing content in zshrc & bashrc, we can backup them
+
+```shell
+sudo cp /etc/bashrc /etc/bashrc.before-nix-darwin
+sudo cp /etc/zshrc /etc/zshrc.before-nix-darwin
+```
+
+-another criteria if we have error again
+
+```shell
+error: Unexpected files in /etc, aborting activation
+The following files have unrecognized content and would be overwritten:
+
+  /etc/bashrc
+  /etc/zshrc
+
+Please check there is nothing critical in these files, rename them by adding .before-nix-darwin to the end, and then try again.
+```
+
+- Resolved by
+
+```shell
+➜  nix sudo mv /etc/bashrc /etc/bashrc.bak
+➜  nix sudo mv /etc/zshrc /etc/zshrc.bak
+➜  nix nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/nix#com-mac
+```
+- Confirm
+
+```
+which darwin-rebuild
+/run/current-system/sw/bin/darwin-rebuild #should be like that
+```
+
+## 3. Add packages
+
+### How to
+- Add package to this array. Example with neovim
+
+```nix
+environment.systemPackages =
+    [ pkgs.neovim
+    ];
+```
+- Then run it to rebuild
+
+```shell
+darwin-rebuild switch --flake ~/nix#your-config
+```
+
+*Note:* might need to remove neovim from homebrew to use the one from nix
+```shell
+brew uninstall neovim
+```
+
+- Rebuild again then check
+
+```shell
+which nvim
+/run/current-system/sw/bin/nvim  #should be like that
+```
+
+### List packages: 
+- example with tmux 
+
+```shell 
+nix search nixpkgs tmux
+```
+- We can use this site as well:
+[nix pkgs](https://search.nixos.org/packages)
+
+
+### UI apps
+- Ui app maybe cannot appeared in Spotlight search on macos (symlink)
+-> Add config in to configuration input, then add alias script for all Applications
+-> Easier way is using mac-app-util
+[link](https://github.com/hraban/mac-app-util)
+
+
+## NOTE:
+- After init git for nix dir, need to add changed files to, if not, we can not rebuild using flake
