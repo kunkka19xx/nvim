@@ -5,14 +5,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    mac-app-util.url = "github:hraban/mac-app-util"; #show UI app in spotlight search
+    mac-app-util.url = "github:hraban/mac-app-util"; # show UI app in spotlight search
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util, home-manager, ... }:
     let
       # define any local vars for inner expressions
-      pkgs = nixpkgs.legacyPackages.${nixpkgs.system}.pkgs;
-      tmux = import ./pkg/tmux.nix { inherit pkgs; };
+      pkgs = nixpkgs.legacyPackages.${nixpkgs.system};
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
@@ -29,28 +30,17 @@
           pkgs.nerd-fonts.jetbrains-mono
         ];
 
-        programs.tmux = {
-          enable = true;
-          plugins = tmux.plugins;
-          extraConfig = tmux.extraConfig;
-        };
-
-        # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";
-
-        # Enable alternative shell support in nix-darwin.
-        # programs.fish.enable = true;
         programs.zsh.enable = true; # i am using zshell
-
-        # Set Git commit hash for darwin-version.
         system.configurationRevision = self.rev or self.dirtyRev or null;
-
-        # Used for backwards compatibility, please read the changelog before changing.
-        # $ darwin-rebuild changelog
         system.stateVersion = 5;
-
-        # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "aarch64-darwin"; # aarch for M apple chipset
+
+        home-manager.users.kunkka = { pkgs, ... }: {
+          home.username = "haovanngyuen";
+          home.homeDirectory = "/Users/haovanngyuen"; # Cập nhật cho đúng với user của bạn
+          programs.zsh.enable = true;
+        };
       };
     in
     # end of the "let" expression, below is the output of the inner expression
