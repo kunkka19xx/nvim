@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+wezterm.log_info("config loaded successfully")
 local config = wezterm.config_builder()
 local io = require("io")
 local brightness = 0.03

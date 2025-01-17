@@ -6,8 +6,8 @@
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "haovanngyuen";
-  home.homeDirectory = "/Users/haovanngyuen";
+  home.username = "kunkka07xx";
+  home.homeDirectory = "/Users/kunkka07xx";
 
   # Custom Modules that I'm enabling
   within.neovim.enable = true;
