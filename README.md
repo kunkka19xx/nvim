@@ -186,3 +186,10 @@ nix search nixpkgs tmux
 
 ## NOTE:
 - After init git for nix dir, need to add changed files to, if not, we can not rebuild using flake
+
+```shell
+nix flake show github:nix-community/home-manager
+```
+```shell
+nix run github:nix-community/home-manager -- switch --flake ./#com-mac
+```
