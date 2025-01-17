@@ -17,6 +17,7 @@ in
     home.packages = [
       pkgs.bat
       pkgs.ripgrep #grep string telescope
+      pkgs.zsh-powerlevel10k
     ];
     programs.fzf = {
       enable = true;
@@ -25,7 +26,6 @@ in
 
     programs.zsh = {
       enable = true;
-
       # autosuggestion Configuration Options
       autosuggestion.enable = true;
       autosuggestion.strategy = [
@@ -34,6 +34,13 @@ in
       ];
       enableCompletion = true;
       syntaxHighlighting.enable = true;
+      oh-my-zsh = {
+        enable = true;
+        theme = "robbyrussell";
+        plugins = [
+          "git"
+        ];
+      };
       history = {
         size = 50000;
         save = 50000;

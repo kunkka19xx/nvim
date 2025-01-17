@@ -16,7 +16,6 @@ in
     programs.tmux = {
       enable = true;
 
-      # Cấu hình trực tiếp trong tmux
       extraConfig = ''
         set -g default-terminal "screen-256color"
 
