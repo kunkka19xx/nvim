@@ -1,12 +1,10 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local io = require("io")
-local os = require("os")
 local brightness = 0.03
 
 -- image setting
-local user_home = os.getenv("HOME")
-local background_folder = user_home .. "/.config/nvim/bg"
+local background_folder = "./bg"
 local function pick_random_background(folder)
     local handle = io.popen('ls "' .. folder .. '"')
     if handle ~= nil then
@@ -34,7 +32,7 @@ config.window_background_image_hsb = {
 }
 
 -- default background
-local bg_image = user_home .. "/.config/nvim/bg/bg.jpg"
+local bg_image = "./bg/bg.jpg"
 
 config.window_background_image = bg_image
 -- end image setting
@@ -100,7 +98,7 @@ config.keys = {
                     hue = 1.0,
                     saturation = 0.8,
                 },
-                window_background_image = bg_image
+                window_background_image = bg_image,
             })
         end),
     },
@@ -115,7 +113,7 @@ config.keys = {
                     hue = 1.0,
                     saturation = 0.8,
                 },
-                window_background_image = bg_image
+                window_background_image = bg_image,
             })
         end),
     },
