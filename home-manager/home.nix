@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  home.username = "haovanngyuen"; # Thay bằng username của bạn
-  home.homeDirectory = "/Users/haovanngyuen"; # Thay bằng đường dẫn home của bạn
+  home.username = "haovanngyuen";
+  home.homeDirectory = "/Users/haovanngyuen";
   programs.tmux = {
     enable = true;
     extraConfig = ''

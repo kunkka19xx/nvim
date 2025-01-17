@@ -36,11 +36,12 @@
         system.stateVersion = 5;
         nixpkgs.hostPlatform = "aarch64-darwin"; # aarch for M apple chipset
 
-        home-manager.users.kunkka = { pkgs, ... }: {
-          home.username = "haovanngyuen";
-          home.homeDirectory = "/Users/haovanngyuen"; # Cập nhật cho đúng với user của bạn
-          programs.zsh.enable = true;
-        };
+        #
+        # home-manager.users.kunkka = { pkgs, ... }: {
+        #   home.username = "haovanngyuen";
+        #   home.homeDirectory = "/Users/haovanngyuen"; # Cập nhật cho đúng với user của bạn
+        #   programs.zsh.enable = true;
+        # };
       };
     in
     # end of the "let" expression, below is the output of the inner expression
