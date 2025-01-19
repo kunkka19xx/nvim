@@ -20,6 +20,7 @@
   home.packages = [
     pkgs.vim
     pkgs.git
+    pkgs.zig
     pkgs.nerd-fonts.inconsolata
     # pkgs.nerd-fonts.maple-mono
     pkgs.rcm
