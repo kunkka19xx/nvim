@@ -193,3 +193,5 @@ nix flake show github:nix-community/home-manager
 ```shell
 nix run github:nix-community/home-manager -- switch --flake ./#com-mac
 ```
+
+- We need to install home-manager to use it!!! (declaration is not eough!)

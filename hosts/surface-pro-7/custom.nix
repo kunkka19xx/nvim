@@ -2,7 +2,7 @@
 	config, pkgs, inputs, lib, ...
 }: 
 {
-	import = [./../../modules/home-manager/default.nix
+	imports = [./../../modules/home-manager/default.nix
 	inputs.home-manager.nixosModules.home-manager];
 	within.neovim.enable = true;
 	within.tmux.enable = true;
@@ -10,7 +10,7 @@ nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-  users.users.kunkka19xx-linux.packages = lib.mkDefault [
+  users.users.kunkka07xx.packages = lib.mkDefault [
     pkgs.vim
     pkgs.alsa-tools
     pkgs.home-manager

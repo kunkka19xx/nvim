@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./custom.nix
     ];
 
   # Bootloader.
@@ -114,6 +115,7 @@
      gh
      alacritty
      tmux
+     home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
