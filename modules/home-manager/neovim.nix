@@ -47,8 +47,8 @@ in
         recursive = true;
       };
       ".config/nvim/lazy-lock.json" = {
-        source = "${config.xdg.dataHome}/nvim/lazy-lock.json";
-        target = "symlink";
+        source = ../../dotfiles/nvim/lazy-lock.json;
+        recursive = true;
       };
     };
   };
