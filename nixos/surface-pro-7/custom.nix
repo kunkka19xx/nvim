@@ -8,8 +8,6 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
-  within.neovim.enable = true;
-  within.tmux.enable = true;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
