@@ -1,12 +1,17 @@
+{ config
+, pkgs
+, inputs
+, lib
+, ...
+}:
 {
-	config, pkgs, inputs, lib, ...
-}: 
-{
-	imports = [./../../modules/home-manager/default.nix
-	inputs.home-manager.nixosModules.home-manager];
-	within.neovim.enable = true;
-	within.tmux.enable = true;
-nix.settings.experimental-features = [
+  imports = [
+    ./../../modules/home-manager/default.nix
+    inputs.home-manager.nixosModules.home-manager
+  ];
+  within.neovim.enable = true;
+  within.tmux.enable = true;
+  nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
@@ -23,7 +28,7 @@ nix.settings.experimental-features = [
   environment.systemPackages = [
     pkgs.zig
   ];
-    nixpkgs.config.allowUnfreePredicate = (_: true);
+  nixpkgs.config.allowUnfreePredicate = (_: true);
   boot.loader.systemd-boot.configurationLimit = 5;
   # Garbage Collector Setting
   nix.gc.automatic = true;

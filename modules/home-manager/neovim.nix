@@ -45,3 +45,5 @@ in
     };
   };
 }
+
+# TODO: add conditions for nixos

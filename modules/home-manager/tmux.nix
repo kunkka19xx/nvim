@@ -5,3 +5,5 @@
   programs.tmux.extraConfig = builtins.readFile ../../dotfiles/tmux/tmux.conf;
 }
 
+# TODO: install plugins
+

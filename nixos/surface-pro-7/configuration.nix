@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./custom.nix
     ];
@@ -45,7 +46,7 @@
   i18n.inputMethod = {
     enable = true;
     type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [bamboo];
+    ibus.engines = with pkgs.ibus-engines; [ bamboo ];
   };
 
   nix = {
@@ -61,7 +62,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -95,7 +96,7 @@
     description = "kunkka07xx";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird 
+      #  thunderbird 
     ];
   };
 
@@ -108,14 +109,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     neovim
-     wget
-     git
-     gh
-     alacritty
-     tmux
-     home-manager
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
+    wget
+    git
+    gh
+    alacritty
+    tmux
+    home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
