@@ -40,6 +40,8 @@ in
       # pkgs.luarocks
       pkgs.lua51Packages.lua
       pkgs.lua51Packages.luarocks
+      pkgs.cargo #install mason
+      pkgs.unzip #install java
     ];
     home.file = {
       ".config/nvim" = {
