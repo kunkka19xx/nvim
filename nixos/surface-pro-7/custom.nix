@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ./../../modules/home-manager/default.nix
     inputs.home-manager.nixosModules.home-manager
   ];
   within.neovim.enable = true;
