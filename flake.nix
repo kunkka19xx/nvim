@@ -21,6 +21,13 @@
     , ...
     }@inputs:
     let
+    mkNixosConfig =
+        system: extraModules:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs system; };
+          modules = extraModules;
+        };
       mkHmConfig =
         pkgs: extraModules:
         home-manager.lib.homeManagerConfiguration {
@@ -46,7 +53,9 @@
           ];
         };
       };
-
+      nixosConfigurations = {
+        surface = mkNixosConfig "x86_64-linux" [ ./hosts/surface-pro-7/configuration.nix ];
+      };
       homeConfigurations = {
         "com-mac" = home-manager.lib.homeManagerConfiguration {
           # pkgs = nixpkgs.legacyPackages.${nixpkgs.system};
