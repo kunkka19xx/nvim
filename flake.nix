@@ -67,6 +67,13 @@
             ./users/haovanngyuen.nix
           ];
         };
+        "kunkka07xx-linux" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./users/kunkka07xx-linux.nix
+          ];
+        };
       };
     };
 }
