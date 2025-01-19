@@ -36,6 +36,8 @@ in
       pkgs.nixfmt-rfc-style
       pkgs.zls
       pkgs.ripgrep
+      # fix bug lazy-luarocks
+      pkgs.luarocks
     ];
     home.file = {
       ".config/nvim" = {
