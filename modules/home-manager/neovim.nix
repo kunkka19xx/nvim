@@ -37,7 +37,9 @@ in
       pkgs.zls
       pkgs.ripgrep
       # fix bug lazy-luarocks
-      pkgs.luarocks
+      # pkgs.luarocks
+      pkgs.lua51
+      pkgs.lua51Packages.luarocks
     ];
     home.file = {
       ".config/nvim" = {
