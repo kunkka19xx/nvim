@@ -1,8 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
     ./../modules/home-manager/default.nix
+    ./../modules/home-manager/alacritty.nix
+    ./../modules/home-manager/wezterm.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -11,6 +13,8 @@
 
   # Custom Modules that I'm enabling
   within.neovim.enable = true;
+  within.alacritty.enable = true;
+  within.wezterm.enable = true;
   within.zsh.enable = true;
   home.stateVersion = "24.05"; # Please read the comment before changing.
   nixpkgs.config.allowUnfree = true;
@@ -20,8 +24,9 @@
   home.packages = [
     pkgs.vim
     pkgs.git
+    pkgs.wezterm
     pkgs.nerd-fonts.inconsolata
-    # pkgs.nerd-fonts.maple-mono
+    pkgs.alacritty
     pkgs.rcm
   ];
 
