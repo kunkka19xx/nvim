@@ -1,8 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
-  programs.tmux.enable = true;
-  programs.tmux.extraConfig = builtins.readFile ../../dotfiles/tmux/tmux.conf;
+  programs.tmux = {
+    plugins = [ pkgs.tmuxPlugins.vim-tmux-navigator ];
+    enable = true;
+    extraConfig = builtins.readFile ../../dotfiles/tmux/tmux.conf;
+  };
 }
 
 # TODO: install plugins

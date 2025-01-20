@@ -17,4 +17,7 @@ require("vim-options")
 require("vim-helpers")
 require("help-floating")
 require("floating-term")
-require("lazy").setup("plugins")
+-- require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+    lockfile = "./lazy-lock.json",
+})

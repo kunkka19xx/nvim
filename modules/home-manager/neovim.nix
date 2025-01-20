@@ -48,12 +48,11 @@ in
         source = ../../dotfiles/nvim;
         recursive = true;
       };
-      ".config/nvim/lazy-lock.json" = {
+      /*       ".config/nvim/lazy-lock.json" = {
         source = ../../dotfiles/nvim/lazy-lock.json;
         recursive = true;
-      };
+      */
     };
   };
 }
-
 # TODO: add conditions for nixos
