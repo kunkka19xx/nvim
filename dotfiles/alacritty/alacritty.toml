@@ -17,3 +17,11 @@ option_as_alt = "Both"
 normal.family = "Inconsolata Nerd Font"
 
 size = 18
+
+
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+{ key = "F", mods = "Control|Shift", action = "ToggleFullscreen" },
+{ key = "L", mods = "Control|Shift", action = "ToggleMaximized" },
+]
