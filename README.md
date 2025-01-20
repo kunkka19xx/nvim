@@ -106,32 +106,14 @@ nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch 
 
 ```
 
-- If there are existing content in zshrc & bashrc, we can backup them
-
-```shell
-sudo cp /etc/bashrc /etc/bashrc.before-nix-darwin
-sudo cp /etc/zshrc /etc/zshrc.before-nix-darwin
-```
-
--another criteria if we have error again
-
-```shell
-error: Unexpected files in /etc, aborting activation
-The following files have unrecognized content and would be overwritten:
-
-  /etc/bashrc
-  /etc/zshrc
-
-Please check there is nothing critical in these files, rename them by adding .before-nix-darwin to the end, and then try again.
-```
-
-- Resolved by
+- If there are existing content in zshrc & bashrc, we can backup them first
 
 ```shell
 ➜  nix sudo mv /etc/bashrc /etc/bashrc.bak
 ➜  nix sudo mv /etc/zshrc /etc/zshrc.bak
 ➜  nix nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/nix#com-mac
 ```
+
 - Confirm
 
 ```
@@ -142,20 +124,23 @@ which darwin-rebuild
 ## 3. Add packages
 
 ### How to
+
 - Add package to this array. Example with neovim
 
 ```nix
-environment.systemPackages =
+environment.systemPackages = #systemPackages
     [ pkgs.neovim
     ];
 ```
+
 - Then run it to rebuild
 
 ```shell
 darwin-rebuild switch --flake ~/nix#your-config
 ```
 
-*Note:* might need to remove neovim from homebrew to use the one from nix
+_Note:_ might need to remove neovim from homebrew to use the one from nix
+
 ```shell
 brew uninstall neovim
 ```
@@ -167,31 +152,62 @@ which nvim
 /run/current-system/sw/bin/nvim  #should be like that
 ```
 
-### List packages: 
-- example with tmux 
+### List packages:
 
-```shell 
+- example with tmux
+
+```shell
 nix search nixpkgs tmux
 ```
-- We can use this site as well:
-[nix pkgs](https://search.nixos.org/packages)
 
+- We can use this site as well:
+  [nix pkgs](https://search.nixos.org/packages)
 
 ### UI apps
-- Ui app maybe cannot appeared in Spotlight search on macos (symlink)
--> Add config in to configuration input, then add alias script for all Applications
--> Easier way is using mac-app-util
-[link](https://github.com/hraban/mac-app-util)
 
+- Ui app maybe cannot appeared in Spotlight search on macos (symlink)
+  -> Add config in to configuration input, then add alias script for all Applications
+  -> Easier way is using mac-app-util
+  [link](https://github.com/hraban/mac-app-util)
+
+## Home manager
+
+- There are some levels of settings : system -> profile -> modules
+- To use profile and modular settings, and keep dotfiles setting in their original setting language, use home manager
+- We need to install home-manager to use it!!! (declaration is not eough!)
+  [home-manager](https://nix-community.github.io/home-manager/)
+
+- apply profile:
+
+```shell
+home-manager switch --flake ~/nix#com-mac
+```
+
+- Note: Home manager adds package as follow
+
+```nix
+home.packages = [
+    pkgs.vim
+    pkgs.git
+    pkgs.wezterm
+  # more
+  ];
+```
 
 ## NOTE:
+
 - After init git for nix dir, need to add changed files to, if not, we can not rebuild using flake
 
 ```shell
 nix flake show github:nix-community/home-manager
 ```
+
 ```shell
 nix run github:nix-community/home-manager -- switch --flake ./#com-mac
 ```
 
-- We need to install home-manager to use it!!! (declaration is not eough!)
+- Collect garbage
+
+```shell
+nix-collect-garbage -d
+```
