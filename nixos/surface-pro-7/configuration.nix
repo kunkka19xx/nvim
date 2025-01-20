@@ -113,7 +113,6 @@
     wget
     git
     gh
-    alacritty
     gcc
     home-manager
   ];
