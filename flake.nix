@@ -36,21 +36,14 @@
           modules = extraModules;
         };
     in
-    # end of the "let" expression, below is the output of the inner expression
-      # note: a flake can provide multiple outputs 
     {
       darwinConfigurations = {
         com-mac = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
           specialArgs = { inherit inputs; };
           modules = [
-            mac-app-util.homeManagerModules.default
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = false;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users."haovanngyuen" = import ./users/haovanngyen.nix;
-            }
+            mac-app-util.darwinModules.default
+            ./users/hvn/system.nix
           ];
         };
       };
@@ -61,18 +54,17 @@
       };
       homeConfigurations = {
         "com-mac" = home-manager.lib.homeManagerConfiguration {
-          # pkgs = nixpkgs.legacyPackages.${nixpkgs.system};
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs; };
           modules = [
-            ./users/haovanngyuen.nix
+            ./users/hvn/haovanngyuen.nix
           ];
         };
         "kunkka07xx-linux" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
           modules = [
-            ./users/kunkka07xx-linux.nix
+            ./users/kunkka-linux/kunkka07xx-linux.nix
           ];
         };
       };

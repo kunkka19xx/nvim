@@ -202,12 +202,17 @@ home.packages = [
 nix flake show github:nix-community/home-manager
 ```
 
-```shell
-nix run github:nix-community/home-manager -- switch --flake ./#com-mac
-```
+````
 
 - Collect garbage
 
 ```shell
 nix-collect-garbage -d
+````
+
+```shell
+nix-store --gc
 ```
+
+- I use darwin, nixos, ... to manage system pkgs (todo)
+- home-manager for managing user/profile/prj pkgs

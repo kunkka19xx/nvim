@@ -2,9 +2,10 @@
 
 {
   imports = [
-    ./../modules/home-manager/default.nix
-    ./../modules/home-manager/alacritty.nix
-    ./../modules/home-manager/wezterm.nix
+    ./../../modules/home-manager/default.nix
+    ./../../modules/home-manager/alacritty.nix
+    ./../../modules/home-manager/wezterm.nix
+    ./langs.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -28,6 +29,7 @@
     pkgs.nerd-fonts.inconsolata
     pkgs.alacritty
     pkgs.rcm
+    pkgs.unzip #install java, ... neovim
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
