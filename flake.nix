@@ -10,6 +10,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware"; # Add nixos-hardware
   };
 
   outputs =
@@ -18,6 +19,7 @@
     , nixpkgs
     , mac-app-util
     , home-manager
+    , nixos-hardware
     , ...
     }@inputs:
     let
@@ -50,7 +52,13 @@
       nixosConfigurations = {
         surface = mkNixosConfig "x86_64-linux" [
           ./nixos/surface-pro-7/configuration.nix
+          nixos-hardware.nixosModules.microsoft-surface-pro-intel
+          # nixos-hardware.nixosModules.microsoft-surface-common
         ];
+        configuration = {
+          microsoft-surface.ipts.enable = true;
+          microsoft-surface.surface-control.enable = false;
+        };
       };
       homeConfigurations = {
         "com-mac" = home-manager.lib.homeManagerConfiguration {

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -12,9 +12,16 @@
       ./custom.nix
     ];
 
+  #TODO: error
+  # microsoft-surface.ipts.enable = true;
+  # microsoft-surface.surface-control.enable = false;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  # microsoft-surface.kernel.patches = false;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  services.iptsd.enable = lib.mkDefault true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
