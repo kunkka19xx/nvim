@@ -198,17 +198,11 @@ home.packages = [
 
 - After init git for nix dir, need to add changed files to, if not, we can not rebuild using flake
 
-```shell
-nix flake show github:nix-community/home-manager
-```
-
-````
-
 - Collect garbage
 
 ```shell
 nix-collect-garbage -d
-````
+```
 
 ```shell
 nix-store --gc

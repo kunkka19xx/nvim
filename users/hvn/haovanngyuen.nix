@@ -7,8 +7,6 @@
     ./../../modules/home-manager/wezterm.nix
     ./langs.nix
   ];
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "haovanngyuen";
   home.homeDirectory = "/Users/haovanngyuen";
 
@@ -17,15 +15,21 @@
   within.alacritty.enable = true;
   within.wezterm.enable = true;
   within.zsh.enable = true;
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+
   nixpkgs.config.allowUnfree = true;
+  home.stateVersion = "24.05";
+
+  xdg.configFile.aerospace = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/aerospace";
+    recursive = true;
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
     pkgs.vim
-    pkgs.git
     pkgs.wezterm
+    pkgs.aerospace
     pkgs.nerd-fonts.inconsolata
     pkgs.alacritty
     pkgs.rcm

@@ -5,11 +5,23 @@
   # TODO: Add system pks and setting
   # migrate some settings from home to here
   environment.systemPackages = with pkgs; [
+    pre-commit
+    tldr
+    git
   ];
   homebrew = {
     enable = true;
-    casks = [ "firefox" ];
-    onActivation.cleanup = "zap";
+    casks = [
+      "firefox"
+    ];
+    brews = [
+      "staticcheck"
+    ];
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
   };
 
   system.stateVersion = 5;

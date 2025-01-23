@@ -87,6 +87,8 @@
       nixosConfigurations = {
         surface = mkNixosConfig "x86_64-linux" [
           ./nixos/surface-pro-7/configuration.nix
+          # if there is alternative to it to use touchscreen, replace 
+          # because installing kernel takes time
           nixos-hardware.nixosModules.microsoft-surface-pro-intel
           # nixos-hardware.nixosModules.microsoft-surface-common
         ];

@@ -6,20 +6,17 @@
     ./../../modules/home-manager/alacritty.nix
     ./langs.nix
   ];
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+
   home.username = "kunkka07xx";
   home.homeDirectory = "/home/kunkka07xx";
 
-  # Custom Modules that I'm enabling
   within.neovim.enable = true;
   within.zsh.enable = true;
   within.alacritty.enable = true;
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+
+  home.stateVersion = "24.05";
   nixpkgs.config.allowUnfree = true;
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages = [
     pkgs.vim
     pkgs.git
@@ -30,8 +27,6 @@
     pkgs.alacritty
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
   home.file = {
     ".config/rcm/bindings.conf".text = ''
       .txt = ${pkgs.neovim}/bin/nvim
@@ -43,6 +38,7 @@
     TERMINAL = "alacritty";
   };
 
+  # show ui app
   programs.zsh.profileExtra = lib.mkAfter ''
     rm -rf ${config.home.homeDirectory}/.local/share/applications/home-manager
     rm -rf ${config.home.homeDirectory}/.icons/nix-icons
