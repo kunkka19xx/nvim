@@ -11,6 +11,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware"; # Add nixos-hardware
+    # home brew
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+
   };
 
   outputs =
@@ -20,6 +36,10 @@
     , mac-app-util
     , home-manager
     , nixos-hardware
+    , nix-homebrew
+    , homebrew-cask
+    , homebrew-core
+    , homebrew-bundle
     , ...
     }@inputs:
     let
@@ -46,6 +66,21 @@
           modules = [
             mac-app-util.darwinModules.default
             ./users/hvn/system.nix
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                enable = true;
+                enableRosetta = true;
+                # User owning the Homebrew prefix
+                user = "haovanngyuen";
+                taps = {
+                  "homebrew/homebrew-core" = homebrew-core;
+                  "homebrew/homebrew-cask" = homebrew-cask;
+                  "homebrew/homebrew-bundle" = homebrew-bundle;
+                };
+                mutableTaps = false;
+              };
+            }
           ];
         };
       };
