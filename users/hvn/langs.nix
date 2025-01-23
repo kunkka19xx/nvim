@@ -28,8 +28,9 @@ in
     PYTHONSTARTUP = "${pkgs.python3}/lib/python3.13/site-packages";
 
     # Golang
-    GOPATH = "/Users/haovanngyuen/go";
-    GOROOT = "${pkgs.go}";
+    # GOPATH = "/Users/haovanngyuen/go";
+    # GOROOT = "${pkgs.go}/go";
+    #
     # Node.js
     NODE_PATH = "~/.npm-global/lib/node_modules";
 

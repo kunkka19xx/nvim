@@ -65,6 +65,7 @@
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs; };
           modules = [
+            mac-app-util.homeManagerModules.default
             ./users/hvn/haovanngyuen.nix
           ];
         };
