@@ -210,3 +210,6 @@ nix-store --gc
 
 - I use darwin, nixos, ... to manage system pkgs (todo)
 - home-manager for managing user/profile/prj pkgs
+
+### golang
+- Don't know why by need to `unset GOROOT` (if not, go root is pointed to wrong path)

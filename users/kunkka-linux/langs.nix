@@ -11,6 +11,7 @@ in
     nodejs_23
     # Golang
     go
+    golangci-lint
     # Rust
     cargo # Rust package manager, neovim pack install
     # Zig
@@ -23,10 +24,6 @@ in
   home.sessionVariables = {
     # Python
     PYTHONSTARTUP = "${pkgs.python3}/lib/python3.13/site-packages";
-
-    # Golang
-    GOPATH = "/home/kunkka07xx/go";
-    GOROOT = "${pkgs.go}/lib/go";
 
     # Node.js
     NODE_PATH = "~/.npm-global/lib/node_modules";
