@@ -11,20 +11,19 @@
     colima
     docker
     docker-compose
-    docker-client #TODO: confirm
-    google-cloud-sdk
   ];
   homebrew = {
     enable = true;
     casks = [
       "firefox"
+      "obsidian"
+      "obs"
     ];
     brews = [
       "staticcheck"
     ];
     onActivation = {
       autoUpdate = true;
-      cleanup = "zap";
       upgrade = true;
     };
   };
