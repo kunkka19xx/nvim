@@ -37,18 +37,8 @@ nix-shell -p neofetch --run neofetch
 
 ## 2. Nix-darwin module
 
-1. Create nix dir (if without stow)
 
-```shell
-mkdir nix
-```
-
-```shell
-cd nix
-mkidr ~/.config/nix
-```
-
-2. Create nix dir (if with stow, 0-1 1-0, we can install gnu stow via nix)
+### Create nix dir
 
 ```shell
 mkdir dotfiles/nix
@@ -61,7 +51,7 @@ mkidr ~/.config/nix
 
 _note:_ I go for the 1st criteria, after confirming that nix works in a stable state -> I will migrate it to my dotfiles
 
-### 1. Flake (Package manager)
+## Flake (Package manager)
 
 - There are 2 approaches: Channels, Flake
   (I prefer Flake)
@@ -79,11 +69,11 @@ nix flake init -t nix-darwin --extra-experimental-features "nix-command flakes"
 - after this command, a file flake.nix will be added.
 - open and add your setting :)
 
-## 2. Config
+### Config
 
 [wiki](https://wiki.nixos.org/wiki/Flakes)
 
-- change darwinConfigurations
+- change darwinConfigurations (for macos)
   ex:
 
 ```nix
@@ -121,9 +111,9 @@ which darwin-rebuild
 /run/current-system/sw/bin/darwin-rebuild #should be like that
 ```
 
-## 3. Add packages
+### Add packages
 
-### How to
+#### How to
 
 - Add package to this array. Example with neovim
 
@@ -163,7 +153,7 @@ nix search nixpkgs tmux
 - We can use this site as well:
   [nix pkgs](https://search.nixos.org/packages)
 
-### UI apps
+#### UI apps
 
 - Ui app maybe cannot appeared in Spotlight search on macos (symlink)
   -> Add config in to configuration input, then add alias script for all Applications
@@ -180,7 +170,7 @@ nix search nixpkgs tmux
 - apply profile:
 
 ```shell
-home-manager switch --flake ~/nix#com-mac
+home-manager switch --flake ~/nix#your-config
 ```
 
 - Note: Home manager adds package as follow
@@ -212,4 +202,4 @@ nix-store --gc
 - home-manager for managing user/profile/prj pkgs
 
 ### golang
-- Don't know why by need to `unset GOROOT` (if not, go root is pointed to wrong path)
+- Don't know why but it seems like we need to `unset GOROOT` (if not, go root will be pointed to wrong path)
