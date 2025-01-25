@@ -26,7 +26,7 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-
+    inputs.hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs =
