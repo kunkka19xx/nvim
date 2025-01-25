@@ -86,6 +86,9 @@ return {
                     },
                 },
             })
+            -- nix
+            lspconfig.rnix.setup({capabilities = capabilities})
+            -- lsp kepmap setting
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
