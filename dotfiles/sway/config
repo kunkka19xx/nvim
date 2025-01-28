@@ -1,0 +1,23 @@
+# Set your mod key to the Super (Windows) key
+set $mod Mod4
+
+# Basic keybindings
+bindsym $mod+Return exec alacritty   # Launch Alacritty terminal
+bindsym $mod+f exec firefox          # Launch Firefox
+bindsym $mod+q kill                  # Close focused window
+
+# Split windows (horizontal/vertical)
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# Floating windows
+bindsym $mod+Shift+space floating toggle
+# output eDP-1 resolution 1920x1080 rotate normal
+# Set background (replace with your own image path)
+# output * bg /home/kunkka07xx/nix/dotfiles/sway/bg.jpg fill
+bar {
+  position top
+  status_command waybar
+}
+
+set $term alacritty

@@ -70,6 +70,13 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Disable GNOME and use Sway instead
+  # services.xserver.displayManager.gdm.enable = false;
+  # services.xserver.desktopManager.gnome.enable = false;
+
+  # Ensure Sway is used for the session
+  # services.xserver.windowManager.sway.enable = true;
+
   services.xserver = {
     layout = "us";
     # xkbOptions = "ctrl:nocaps";
@@ -81,6 +88,8 @@
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  # sway home manager needs
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -109,13 +118,6 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.hyprland = {
-    enable = true;
-    # set the flake package
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    # make sure to also set the portal package, so that they are in sync
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -129,7 +131,6 @@
     gcc
     home-manager
   ];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
