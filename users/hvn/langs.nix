@@ -33,6 +33,8 @@ in
     #
     # Node.js
     NODE_PATH = "~/.npm-global/lib/node_modules";
+    # Need following command before installing npm pkgs, TODO: research
+    #        npm set prefix ~/.npm-global
 
     # Rust
     CARGO_HOME = "~/.cargo";
