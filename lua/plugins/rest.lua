@@ -1,7 +1,7 @@
 return {
-  "rest-nvim/rest.nvim",
+	"rest-nvim/rest.nvim",
 }
--- :TSInstall http 
+-- :TSInstall http
 -- to use http client
 -- :Rest run {request name}
 -- :Rest run

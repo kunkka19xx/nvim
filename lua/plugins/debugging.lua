@@ -1,10 +1,10 @@
 return {
 	"mfussenegger/nvim-dap",
-	dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio" , "leoluz/nvim-dap-go"},
+	dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio", "leoluz/nvim-dap-go" },
 	config = function()
 		local dap, dapui = require("dap"), require("dapui")
-    require("dap-go").setup()
-    require("dapui").setup()
+		require("dap-go").setup()
+		require("dapui").setup()
 
 		dap.listeners.before.attach.dapui_config = function()
 			dapui.open()
@@ -24,4 +24,4 @@ return {
 }
 
 -- dont for get to install debugger here: https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
--- eg: go... brew install delve, then add go dependencies 
+-- eg: go... brew install delve, then add go dependencies

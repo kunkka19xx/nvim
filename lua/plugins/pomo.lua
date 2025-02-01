@@ -64,9 +64,9 @@ return {
         },
         sessions = {
             pomodoro = {
-                { name = "Work",        duration = "35m" },
-                { name = "Short Break", duration = "5m" },
                 { name = "Work",        duration = "30m" },
+                { name = "Short Break", duration = "7m" },
+                { name = "Work",        duration = "25m" },
                 { name = "Short Break", duration = "7m" },
                 { name = "Work",        duration = "25m" },
                 { name = "Long Break",  duration = "10m" },
