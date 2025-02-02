@@ -4,7 +4,6 @@
   imports = [
     ./../../modules/home-manager/default.nix
     ./../../modules/home-manager/alacritty.nix
-    ./../../modules/home-manager/sway.nix
     ./langs.nix
   ];
 
