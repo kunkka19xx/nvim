@@ -4,11 +4,11 @@
 , ...
 }:
 
-
 {
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    checkConfig = false;
     extraConfig = builtins.readFile ../../dotfiles/sway/config;
   };
   programs.waybar = {
