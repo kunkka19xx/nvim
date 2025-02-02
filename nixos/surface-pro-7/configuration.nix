@@ -12,12 +12,6 @@
       ./custom.nix
     ];
 
-  #TODO: error
-  # microsoft-surface.ipts.enable = true;
-  # microsoft-surface.surface-control.enable = false;
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  # microsoft-surface.kernel.patches = false;
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -68,8 +62,11 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
   services.xserver.desktopManager.gnome.enable = true;
-
+  services.xserver.displayManager.sessionPackages = [
+    pkgs.sway
+  ];
   # Disable GNOME and use Sway instead
   # services.xserver.displayManager.gdm.enable = false;
   # services.xserver.desktopManager.gnome.enable = false;
@@ -121,32 +118,29 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  <<<<<<< HEAD
-    };
-    ====== =
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = with pkgs;
-  [
-  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    gh
-    gcc
-    home-manager
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs;
+    [
+      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      wget
+      git
+      gh
+      gcc
+      home-manager
     ];
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
-    # List services that you want to enable:
+  # List services that you want to enable:
 
-    # Enable the OpenSSH daemon.
-    services.openssh.enable = true;
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
   services.interception-tools =
     let
       itools = pkgs.interception-tools;

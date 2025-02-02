@@ -17,7 +17,7 @@ bindsym $mod+Shift+space floating toggle
 # output * bg /home/kunkka07xx/nix/dotfiles/sway/bg.jpg fill
 bar {
   position top
-  status_command waybar
+  swaybar_command waybar
 }
 
 set $term alacritty
