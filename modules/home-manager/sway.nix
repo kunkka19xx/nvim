@@ -10,11 +10,15 @@
     wrapperFeatures.gtk = true;
     checkConfig = false;
     extraConfig = builtins.readFile ../../dotfiles/sway/config;
+    config.bars = [{
+      command = "swaybar_command waybar";
+      position = "top";
+    }];
   };
   programs.waybar = {
     enable = true;
-    # configFile = ./waybar-config.json;
-    # styleFile = ./waybar-style.css; 
+    style = builtins.readFile ../../dotfiles/sway/waybar/style.css;
   };
+  xdg.configFile."waybar/config".source = ../../dotfiles/sway/waybar/config.jsonc;
 }
 

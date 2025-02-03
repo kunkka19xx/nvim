@@ -67,12 +67,6 @@
   services.xserver.displayManager.sessionPackages = [
     pkgs.sway
   ];
-  # Disable GNOME and use Sway instead
-  # services.xserver.displayManager.gdm.enable = false;
-  # services.xserver.desktopManager.gnome.enable = false;
-
-  # Ensure Sway is used for the session
-  # services.xserver.windowManager.sway.enable = true;
 
   services.xserver = {
     layout = "us";
