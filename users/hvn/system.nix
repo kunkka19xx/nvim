@@ -18,6 +18,7 @@
     enable = true;
     casks = [
       "firefox"
+      "slack"
     ];
     brews = [
       "staticcheck"
@@ -33,5 +34,21 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+
+  # Setting default options for mac such as: dock, theme mode,...
+  system.defaults = {
+    dock.autohide = true;
+    dock.persistent-apps = [
+      "${pkgs.alacritty}/Applications/Alacritty.app/"
+      "${pkgs.wezterm}/Applications/Wezterm.app/"
+      "/Applications/Slack.app/"
+      "/Applications/Firefox.app/"
+      "/System/Applications/System Settings.app/"
+    ];
+    finder.FXPreferredViewStyle = "clmv"; # column view for finder
+    NSGlobalDomain.AppleInterfaceStyle = "Dark";
+    NSGlobalDomain."com.apple.keyboard.fnState" = true;
+    # NSGlobalDomain._HIHideMenuBar = false;
+  };
 }
 
