@@ -13,6 +13,7 @@
     config.bars = [{
       command = "swaybar_command waybar";
       position = "top";
+      mode = "dock";
     }];
   };
   programs.waybar = {
