@@ -49,6 +49,16 @@ in
         expireDuplicatesFirst = true;
         share = true;
       };
+      shellAliases = {
+        dc = "docker-compose";
+        rm = "rm -i";
+        k = "kubectl";
+        v = "nvim";
+        op = "cd ~/Documents/git && echo 'Went to the git folder'";
+        fp = "fzf --preview='bat --color=always {}'";
+        fv = "nvim $(fzf -m --preview='bat --color=always {}')";
+        gcof = "git fetch && git checkout $(git branch | fzf | sed 's/^..//')";
+      };
     };
   };
 }

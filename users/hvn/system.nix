@@ -49,6 +49,8 @@
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
     NSGlobalDomain."com.apple.keyboard.fnState" = true;
     # NSGlobalDomain._HIHideMenuBar = false;
+    NSGlobalDomain.NSScrollAnimationEnabled = true;
+    NSGlobalDomain."com.apple.swipescrolldirection" = false;
   };
 }
 
