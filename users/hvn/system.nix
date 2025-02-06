@@ -19,6 +19,7 @@
     casks = [
       "firefox"
       "slack"
+      "ghostty"
     ];
     brews = [
       "staticcheck"
@@ -29,7 +30,6 @@
       upgrade = true;
     };
   };
-
   system.stateVersion = 5;
   nix.extraOptions = ''
     experimental-features = nix-command flakes

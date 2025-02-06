@@ -15,7 +15,7 @@
   within.alacritty.enable = true;
   within.wezterm.enable = true;
   within.zsh.enable = true;
-
+  within.ghostty.enable = true;
   nixpkgs.config.allowUnfree = true;
   home.stateVersion = "24.05";
 
