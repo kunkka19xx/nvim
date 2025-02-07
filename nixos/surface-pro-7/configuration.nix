@@ -69,7 +69,7 @@
   ];
 
   services.xserver = {
-    layout = "us";
+    xkb.layout = "us";
     # xkbOptions = "ctrl:nocaps";
     xkb = { variant = ""; };
   };
@@ -122,6 +122,9 @@
       gh
       gcc
       home-manager
+      pipewire
+      pulseaudio
+      brightnessctl
     ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
