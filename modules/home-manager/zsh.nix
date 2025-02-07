@@ -58,6 +58,7 @@ in
         fp = "fzf --preview='bat --color=always {}'";
         fv = "nvim $(fzf -m --preview='bat --color=always {}')";
         gcof = "git fetch && git checkout $(git branch | fzf | sed 's/^..//')";
+        lzd = "lazydocker";
       };
     };
   };

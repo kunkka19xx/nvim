@@ -34,6 +34,7 @@
     pkgs.alacritty
     pkgs.rcm
     pkgs.unzip #install java, ... neovim
+    pkgs.lazydocker
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
