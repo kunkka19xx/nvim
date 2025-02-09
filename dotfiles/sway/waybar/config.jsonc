@@ -1,7 +1,7 @@
 {
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock", "idle_inhibitor", "network"],
-    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "custom/power"],
+    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "battery", "custom/power"],
 
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -30,7 +30,7 @@
 		"on-click": "gnome-calendar"
     },
     "pulseaudio": {
-        "format": "{volume}% {icon} ",
+        "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": "0% {icon} ",
@@ -46,6 +46,17 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "battery": {
+        // "bat": "BAT2",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
     },
 	"custom/power": {
 		"format": " ",
