@@ -21,3 +21,4 @@ require("floating-term")
 require("lazy").setup("plugins", {
     lockfile = "~/nix/dotfiles/nvim/lazy-lock.json",
 })
+require("snipets")
