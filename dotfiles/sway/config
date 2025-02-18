@@ -99,4 +99,7 @@ input "type:keyboard" {
     xkb_options ctrl:nocaps,ctrl:swap_lalt_lctl
 }
 
+# output eDP-1 pos 0 0
+# output DP-1 pos 0 0
+
 set $term alacritty
