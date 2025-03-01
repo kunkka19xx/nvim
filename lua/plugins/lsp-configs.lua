@@ -69,8 +69,8 @@ return {
                         configuration = {
                             runtimes = {
                                 {
-                                    name = "JavaSE-17",
-                                    path = "/opt/jdk-17",
+                                    name = "JavaSE-23",
+                                    path = "/opt/jdk-23",
                                     default = true,
                                 },
                             },
