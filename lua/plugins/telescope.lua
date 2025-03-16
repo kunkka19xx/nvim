@@ -4,6 +4,7 @@ return {
 		tag = "0.1.8",
 		-- or                              , branch = '0.1.x',
 		dependencies = { "nvim-lua/plenary.nvim" },
+		file_ignore_patterns = { ".class" },
 		config = function()
 			-- use telescope'
 			local builtin = require("telescope.builtin")
