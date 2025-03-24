@@ -6,6 +6,7 @@
     ./../../modules/home-manager/alacritty.nix
     ./../../modules/home-manager/wezterm.nix
     ./langs.nix
+    ./go.nix
   ];
   home.username = "haovanngyuen";
   home.homeDirectory = "/Users/haovanngyuen";

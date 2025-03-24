@@ -22,7 +22,7 @@
       "ghostty"
     ];
     brews = [
-      "staticcheck"
+      # "staticcheck"
     ];
     onActivation = {
       autoUpdate = true;

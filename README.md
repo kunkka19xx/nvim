@@ -203,3 +203,9 @@ nix-store --gc
 
 ### golang
 - Don't know why but it seems like we need to `unset GOROOT` (if not, go root will be pointed to wrong path)
+
+### Get sha256
+- example script:
+```shell
+nix-shell -p nix-prefetch-git --run "nix-prefetch-git --url https://github.com/golang/go --rev go1.24.0"
+```
