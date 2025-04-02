@@ -14,7 +14,7 @@ return {
 		},
 		config = function()
 			require("mason-lspconfig").setup({
-                -- manually install packages that do not exist in this list please
+				-- manually install packages that do not exist in this list please
 				ensure_installed = { "lua_ls", "zls", "gopls", "ts_ls" },
 			})
 		end,
@@ -88,6 +88,14 @@ return {
 			lspconfig.rnix.setup({ capabilities = capabilities })
 			-- protocol buffer
 			lspconfig.buf_ls.setup({ capabilities = capabilities })
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "proto",
+				callback = function()
+					lspconfig.buf_language_server.setup({
+						capabilities = capabilities,
+					})
+				end,
+			})
 			-- lsp kepmap setting
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
