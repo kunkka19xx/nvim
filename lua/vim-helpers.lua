@@ -29,15 +29,15 @@ vim.keymap.set("n", "<leader>ob", function()
 	if file_path ~= "" then
 		local cmd
 		if vim.fn.has("mac") == 1 then
-			local firefox_installed = os.execute(" which /Applications/Firefox.app/Contents/MacOS/firefox")
-			if firefox_installed ~= "/Applications/Firefox.app/Contents/MacOS/firefox" then
-				cmd = "open -a 'Firefox' " .. file_path
-			else
+			local firefox_installed = vim.fn.system("which /Applications/Firefox.app/Contents/MacOS/firefox")
+			if firefox_installed == "" then
 				cmd = "open -a 'Google Chrome' " .. file_path
+			else
+				cmd = "open -a 'Firefox' " .. file_path
 			end
 		else
 			cmd = "Firefox " .. file_path
-			local firefox_installed = os.execute("which firefox > /dev/null 2>&1")
+			local firefox_installed = vim.fn.system("which firefox > /dev/null 2>&1")
 			if firefox_installed ~= 0 then
 				cmd = "google-chrome " .. file_path
 			end
