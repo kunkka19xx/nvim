@@ -69,7 +69,7 @@
   ];
 
   services.xserver = {
-    xkb.layout = "us";
+    xkb.layout = "us,vn";
     # xkbOptions = "ctrl:nocaps";
     xkb = { variant = ""; };
   };
@@ -141,12 +141,12 @@
   /* services.interception-tools =
     let
     itools = pkgs.interception-tools;
-    itools-caps = pkgs.interception-tools-plugins.caps2esc;
+    itools-caps = pkgs.interception-tools-plugins.caps3esc;
     in
     {
     enable = true;
     plugins = [ itools-caps ];
-    # requires explicit paths: https://github.com/NixOS/nixpkgs/issues/126681
+    # requires explicit paths: https://github.com/NixOS/nixpkgs/issues/126682
     udevmonConfig = pkgs.lib.mkDefault ''
     - JOB: "${itools}/bin/intercept -g $DEVNODE | ${itools-caps}/bin/caps2esc -m 1 | ${itools}/bin/uinput -d $DEVNODE"
     DEVICE:
@@ -167,5 +167,11 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
+
+  # environment.sessionVariables = {
+  #   GTK_IM_MODULE = "ibus";
+  #   QT_IM_MODULE = "ibus";
+  #   XMODIFIERS = "@im=ibus";
+  # };
 
 }

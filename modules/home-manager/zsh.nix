@@ -54,12 +54,19 @@ in
         rm = "rm -i";
         k = "kubectl";
         v = "nvim";
+        f = "fzf";
         op = "cd ~/Documents/git && echo 'Went to the git folder'";
         fp = "fzf --preview='bat --color=always {}'";
         fv = "nvim $(fzf -m --preview='bat --color=always {}')";
         gcof = "git fetch && git checkout $(git branch | fzf | sed 's/^..//')";
         lzd = "lazydocker";
       };
+      initExtra = ''
+        gpup() {
+          local branch=$(git rev-parse --abbrev-ref HEAD)
+          git push --set-upstream origin "$branch"
+        }
+      '';
     };
   };
 }

@@ -37,7 +37,15 @@
     EDITOR = "nvim";
     BROWSER = "firefox";
     TERMINAL = "alacritty";
+    GTK_IM_MODULE = "ibus";
+    QT_IM_MODULE = "ibus";
+    XMODIFIERS = "@im=ibus";
   };
+
+  # ibus
+  xsession.windowManager.bspwm.startupPrograms = [
+    "${pkgs.ibus}/bin/ibus restart || ${pkgs.ibus}/bin/ibus-daemon -d -r -x"
+  ];
 
   # show ui app
   programs.zsh.profileExtra = lib.mkAfter ''
