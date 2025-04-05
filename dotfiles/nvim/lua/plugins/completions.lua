@@ -3,7 +3,12 @@ return {
 		"L3MON4D3/LuaSnip",
 		dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" },
 	},
-	{ "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline" },
+	{
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
+	},
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -39,7 +44,9 @@ return {
 					{ name = "gci" },
 					{ name = "ts_ls" },
 					{ name = "gopls" },
-					{ name = "rnix" },
+					{ name = "nix" },
+					{ name = "buf_ls" },
+					{ name = "render-markdown" },
 				}),
 			})
 		end,
