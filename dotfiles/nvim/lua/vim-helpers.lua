@@ -36,9 +36,9 @@ vim.keymap.set("n", "<leader>ob", function()
 				cmd = "open -a 'Firefox' " .. file_path
 			end
 		else
-			cmd = "Firefox " .. file_path
-			local firefox_installed = vim.fn.system("which firefox > /dev/null 2>&1")
-			if firefox_installed ~= 0 then
+			cmd = "firefox " .. file_path
+			local firefox_installed = vim.fn.system("which firefox")
+			if firefox_installed == "firefox not found" then
 				cmd = "google-chrome " .. file_path
 			end
 		end
@@ -55,6 +55,7 @@ local function get_current_layout()
 	local f = io.popen("im-select")
 	local layout = nil
 	if f ~= nil then
+		im_select = f
 		layout = f:read("*all"):gsub("\n", "")
 		f:close()
 	end
@@ -64,15 +65,18 @@ end
 -- Save current layout
 local last_insert_layout = get_current_layout()
 local english_layout = "com.apple.keylayout.ABC"
+local im_select = nil
 
 -- If exit insert mode, in command mode -> eng layout,
 -- save the current layout to the variable, then use it for the
 -- next insert time
 vim.api.nvim_create_autocmd("InsertLeave", {
 	callback = function()
-		local current = get_current_layout()
-		last_insert_layout = current
-		os.execute("im-select " .. english_layout)
+		if im_select ~= nil then
+			local current = get_current_layout()
+			last_insert_layout = current
+			os.execute("im-select " .. english_layout)
+		end
 	end,
 })
 
@@ -80,19 +84,25 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
 	pattern = "*:*n",
 	callback = function()
-		os.execute("im-select " .. english_layout)
+		if im_select ~= nil then
+			os.execute("im-select " .. english_layout)
+		end
 	end,
 })
 
 -- when back to nvim, restore prev layout
 vim.api.nvim_create_autocmd("InsertEnter", {
 	callback = function()
-		os.execute("im-select " .. last_insert_layout)
+		if im_select ~= nil then
+			os.execute("im-select " .. last_insert_layout)
+		end
 	end,
 })
 
 vim.api.nvim_create_autocmd({ "FocusGained" }, {
 	callback = function()
-		os.execute("im-select " .. last_insert_layout)
+		if im_select ~= nil then
+			os.execute("im-select " .. last_insert_layout)
+		end
 	end,
 })
