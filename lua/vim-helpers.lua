@@ -62,32 +62,37 @@ local function get_current_layout()
 end
 
 -- Save current layout
-local previous_layout = get_current_layout()
+local last_insert_layout = get_current_layout()
+local english_layout = "com.apple.keylayout.ABC"
 
-vim.api.nvim_create_autocmd("InsertEnter", {
+-- If exit insert mode, in command mode -> eng layout,
+-- save the current layout to the variable, then use it for the
+-- next insert time
+vim.api.nvim_create_autocmd("InsertLeave", {
 	callback = function()
-		previous_layout = get_current_layout()
-	end,
-})
-
--- If exit insert mode, in command mode -> eng layout
-vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineEnter" }, {
-	callback = function()
-		os.execute("im-select com.apple.keylayout.ABC")
+		local current = get_current_layout()
+		last_insert_layout = current
+		os.execute("im-select " .. english_layout)
 	end,
 })
 
 -- mode change to normal -> eng layout
-vim.api.nvim_create_autocmd("ModeChanged", {
+vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
 	pattern = "*:*n",
 	callback = function()
-		os.execute("im-select com.apple.keylayout.ABC")
+		os.execute("im-select " .. english_layout)
 	end,
 })
 
 -- when back to nvim, restore prev layout
-vim.api.nvim_create_autocmd("FocusGained", {
+vim.api.nvim_create_autocmd("InsertEnter", {
 	callback = function()
-		os.execute("im-select " .. previous_layout)
+		os.execute("im-select " .. last_insert_layout)
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "FocusGained" }, {
+	callback = function()
+		os.execute("im-select " .. last_insert_layout)
 	end,
 })
