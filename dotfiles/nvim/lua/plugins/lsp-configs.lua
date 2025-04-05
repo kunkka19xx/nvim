@@ -1,6 +1,7 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		-- NOTE: I comment it to install jdtls (java language server)
 		-- config = function()
 		-- 	require("mason").setup()
 		-- end,
@@ -11,6 +12,12 @@ return {
 		opts = {
 			auto_install = true,
 		},
+		config = function()
+			require("mason-lspconfig").setup({
+				-- manually install packages that do not exist in this list please
+				ensure_installed = { "lua_ls", "zls", "gopls", "ts_ls" },
+			})
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -40,6 +47,10 @@ return {
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
+			-- Js
+			lspconfig.eslint.setup({
+				capabilities = capabilities,
+			})
 			-- zig
 			lspconfig.zls.setup({
 				capabilities = capabilities,
@@ -55,22 +66,8 @@ return {
 			-- golang
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
-				-- settings = {
-				-- 	gopls = {
-				-- 		experimentalPostfixCompletions = true,
-				-- 		analyses = {
-				-- 			unusedparams = true,
-				-- 			shadow = true,
-				-- 		},
-				-- 		staticcheck = true,
-				-- 	},
-				-- },
-				-- init_options = {
-				-- 	usePlaceholders = true,
-				-- },
 			})
 			lspconfig.pyright.setup({ capabilities = capabilities })
-			lspconfig.rnix.setup({ capabilities = capabilities })
 			--java
 			lspconfig.jdtls.setup({
 				settings = {
@@ -78,8 +75,8 @@ return {
 						configuration = {
 							runtimes = {
 								{
-									name = "JavaSE-17",
-									path = "/opt/jdk-17",
+									name = "JavaSE-23",
+									path = "/opt/jdk-23",
 									default = true,
 								},
 							},
@@ -87,8 +84,20 @@ return {
 					},
 				},
 			})
+			-- nix
 			lspconfig.rnix.setup({ capabilities = capabilities })
-			-- lsp keymap
+			-- protocol buffer
+			lspconfig.buf_ls.setup({ capabilities = capabilities })
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "proto",
+				callback = function()
+					lspconfig.buf_language_server.setup({
+						capabilities = capabilities,
+					})
+				end,
+			})
+
+			-- lsp kepmap setting
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

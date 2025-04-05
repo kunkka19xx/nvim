@@ -8,7 +8,7 @@ return {
 				"NormalNC",
 				"TelescopeBorder",
 				"NvimTreeNormal",
-                "LualineNormal",
+				"LualineNormal",
 			},
 		})
 		require("transparent").clear_prefix("NeoTree")
