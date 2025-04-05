@@ -99,6 +99,10 @@ input "type:keyboard" {
     xkb_options ctrl:nocaps,ctrl:swap_lalt_lctl
 }
 
+input "12815:20565:Telink_CIDOO_ABM066" {
+    xkb_options ctrl:nocaps,altwin:swap_lalt_lwin
+}
+
 # output eDP-1 pos 0 0
 # output DP-1 pos 0 0
 
