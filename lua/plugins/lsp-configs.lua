@@ -96,6 +96,7 @@ return {
 					})
 				end,
 			})
+
 			-- lsp kepmap setting
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
