@@ -9,7 +9,7 @@ return {
 	},
 	config = function()
 		-- key map for neo tree
-		vim.keymap.set("n", "<leader>v", ":Neotree filesystem reveal left<CR>", {})
+		vim.keymap.set("n", "<leader>v", ":Neotree filesystem reveal right<CR>", {})
 		vim.keymap.set("n", "<leader>xx", ":Neotree filesystem close <CR>", {})
 	end,
 }
