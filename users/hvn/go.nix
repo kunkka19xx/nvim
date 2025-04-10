@@ -26,7 +26,15 @@ let
       mkdir -p $GOCACHE $GOTMPDIR
 
       echo "Building Go 1.24.0..."
-      cd src
+      if [ ! -d "src" ]; then
+        echo "Error: src directory is missing. Cloning Go source..."
+        git clone https://github.com/golang/go.git src
+        cd src
+        git checkout go1.24.0
+      else
+        cd src
+      fi
+
       ./make.bash
       echo "Go build completed!"
     '';
@@ -77,8 +85,7 @@ in
 
   home.sessionVariables = {
     GOPATH = "/Users/haovanngyuen/go";
+    GOBIN = "${go_from_source}/go/bin";
     GOROOT = "${go_from_source}";
-    # PATH = "${go_from_source}/bin:" + builtins.getEnv "PATH";
   };
 }
-

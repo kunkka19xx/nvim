@@ -13,7 +13,7 @@ in
     # build go 1.24.0 from source => comment this
     # go
     golangci-lint
-    go-tools # gogrep gosmith irdump staticcheck
+    # go-tools # gogrep gosmith irdump staticcheck
     # Rust
     # rustup # Rust version manager
     cargo # Rust package manager
