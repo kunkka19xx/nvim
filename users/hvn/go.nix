@@ -32,16 +32,24 @@ let
       echo "Go build completed!"
     '';
 
-
     installPhase = ''
       mkdir -p $out
+
+      # Copy everything, preserving the Go source structure
       cp -r . $out/
 
-      # Just in case, print what is in bin
-      echo ">>> Installed bin:"
+      # Verify that unsafe package exists
+      if [ ! -f "$out/src/unsafe/unsafe.go" ]; then
+        echo "❌ ERROR: unsafe package is missing!"
+        echo "Listing contents of $out/src:"
+        ls -l $out/src
+        exit 1
+      fi
+
+      echo "✅ Go installed with full stdlib"
+      echo ">>> $out/bin:"
       ls -l $out/bin
     '';
-
 
     meta = with lib; {
       description = "Go programming language (1.24.0)";
