@@ -28,15 +28,20 @@ let
       echo "Building Go 1.24.0..."
       cd src
       ./make.bash
+      cd ..
       echo "Go build completed!"
     '';
 
+
     installPhase = ''
       mkdir -p $out
-
-      # Copy entire GOROOT (everything needed to run and build Go)
       cp -r . $out/
+
+      # Just in case, print what is in bin
+      echo ">>> Installed bin:"
+      ls -l $out/bin
     '';
+
 
     meta = with lib; {
       description = "Go programming language (1.24.0)";
