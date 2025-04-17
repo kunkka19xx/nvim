@@ -52,6 +52,7 @@ end, { desc = "Open current file in browser" })
 -- requires im-select https://github.com/daipeihust/im-select
 -- recommend installing it by brew
 local function get_current_layout()
+	-- ln -s /run/current-system/sw/bin/im-select ~/.local/bin/im-select
 	local f = io.popen("im-select")
 	local layout = nil
 	if f ~= nil then
@@ -59,6 +60,7 @@ local function get_current_layout()
 		layout = f:read("*all"):gsub("\n", "")
 		f:close()
 	end
+	print("Current Layout: " .. layout)
 	return layout
 end
 
