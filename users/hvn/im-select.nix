@@ -1,26 +1,23 @@
-{ stdenv, fetchurl, lib, pkgs, ... }:
+{ pkgs, lib, ... }:
 
-stdenv.mkDerivation {
-  pname = "im-select";
-  version = "latest";
-
-  src = fetchurl {
-    url = "https://github.com/daipeihust/im-select/archive/refs/tags/1.0.1.tar.gz";
-    sha256 = "sha256-4kzdt44Luxs/nbPxVa6pCDgQCMwCEHnU1n+6okz6/L8=";
-  };
-
-  phases = [ "installPhase" ];
-
-  installPhase = ''
-    mkdir -p $out/bin
-    cp $src $out/bin/im-select
-    chmod +x $out/bin/im-select
+let
+  installImSelect = pkgs.writeShellScriptBin "install-im-select" ''
+    export PATH="${pkgs.lib.makeBinPath [ pkgs.curl pkgs.coreutils pkgs.bash ]}:$PATH"
+    set -euo pipefail
+    if ! command -v im-select &>/dev/null; then
+      echo "Installing im-select..."
+      curl -Ls https://raw.githubusercontent.com/daipeihust/im-select/master/install_mac.sh | sh
+    else
+      echo "im-select already installed at: $(which im-select)"
+    fi
   '';
+in
+{
+  home.packages = [ installImSelect ];
 
-  meta = {
-    description = "Switch Input Method from command line on macOS";
-    homepage = "https://github.com/daipeihust/im-select";
-    license = lib.licenses.mit;
-    platforms = [ "x86_64-darwin" "aarch64-darwin" ];
-  };
+  home.activation.installImSelect =
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      ${installImSelect}/bin/install-im-select
+    '';
 }
+

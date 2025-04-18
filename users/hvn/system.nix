@@ -1,9 +1,6 @@
 # system.nix
 { config, pkgs, ... }:
 # Import homebrew packages from the separate file
-let
-  im-select = pkgs.callPackage ./im-select.nix { };
-in
 {
   # TODO: Add system pks and setting
   # migrate some settings from home to here
@@ -16,8 +13,6 @@ in
     docker-compose
     docker-client #TODO: confirm
     google-cloud-sdk
-    im-select
-    unzip
   ];
   homebrew = {
     enable = true;

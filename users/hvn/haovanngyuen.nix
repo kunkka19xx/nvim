@@ -7,6 +7,7 @@
     ./../../modules/home-manager/wezterm.nix
     ./langs.nix
     ./go.nix
+    ./im-select.nix
   ];
   home.username = "haovanngyuen";
   home.homeDirectory = "/Users/haovanngyuen";

@@ -67,7 +67,6 @@ end
 -- Save current layout
 local last_insert_layout = get_current_layout()
 local english_layout = "com.apple.keylayout.ABC"
-local im_select = nil
 
 -- If exit insert mode, in command mode -> eng layout,
 -- save the current layout to the variable, then use it for the
