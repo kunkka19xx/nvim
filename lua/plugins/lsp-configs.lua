@@ -67,7 +67,6 @@ return {
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.pyright.setup({ capabilities = capabilities })
 			--java
 			lspconfig.jdtls.setup({
 				settings = {
@@ -88,6 +87,8 @@ return {
 			lspconfig.rnix.setup({ capabilities = capabilities })
 			-- protocol buffer
 			lspconfig.buf_ls.setup({ capabilities = capabilities })
+			-- docker compose
+			lspconfig.docker_compose_language_service.setup({ capabilities = capabilities })
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "proto",
 				callback = function()
@@ -96,7 +97,8 @@ return {
 					})
 				end,
 			})
-
+			-- python
+			lspconfig.pylsp.setup({ capabilities = capabilities })
 			-- lsp kepmap setting
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})

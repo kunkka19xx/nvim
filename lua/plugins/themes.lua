@@ -2,7 +2,7 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		name = "tokyonight",
-		priority = 1000,
+		priority = 999,
 		config = function()
 			-- Set default theme
 			local themes = {
@@ -42,11 +42,11 @@ return {
 	{
 		"rebelot/kanagawa.nvim",
 		name = "kanagawa",
-		priority = 910,
+		priority = 1111,
 	},
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
-		priority = 910,
+		priority = 1000,
 	},
 }
