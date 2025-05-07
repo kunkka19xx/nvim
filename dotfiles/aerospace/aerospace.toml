@@ -22,10 +22,10 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 4
 inner.vertical = 5
-outer.left = [{monitor.main = 15}, {monitor.secondary = 25}, 3]
-outer.top = [{monitor.main = -20}, {monitor.secondary = 25}, 3]
-outer.bottom = [{monitor.main = 28}, {monitor.secondary = 25}, 3]
-outer.right = [{monitor.main = 15}, {monitor.secondary = 25}, 3]
+outer.left = [{monitor."Built-in Retina Display" = 15}, {monitor.secondary = 25}, {monitor."DELL S2722DC" = 25}, 3]
+outer.top = [{monitor."Built-in Retina Display" = 0}, {monitor.secondary = 25}, {monitor."DELL S2722DC" = 25}, 3]
+outer.bottom = [{monitor."Built-in Retina Display" = 20}, {monitor.secondary = 25}, {monitor."DELL S2722DC" = 25}, 3]
+outer.right = [{monitor."Built-in Retina Display" = 15}, {monitor.secondary = 25}, {monitor."DELL S2722DC" = 25}, 3]
 
 [mode.main.binding]
 
