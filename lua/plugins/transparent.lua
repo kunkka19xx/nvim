@@ -9,6 +9,12 @@ return {
 				"TelescopeBorder",
 				"NvimTreeNormal",
 				"LualineNormal",
+				"FzfLuaBorder",
+				"FzfLuaNormal",
+				"FzfLuaTitle",
+				"FzfLuaPreviewBorder",
+				"FzfLuaPreviewNormal",
+				"FzfLuaPreviewTitle",
 			},
 		})
 		require("transparent").clear_prefix("NeoTree")
