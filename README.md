@@ -1,4 +1,4 @@
-## 1.Install nix
+## Install nix
 
 ```shell
 curl -L https://nixos.org/nix/install | sh
@@ -29,7 +29,7 @@ curl -L https://nixos.org/nix/install | sh -s -- --no-modify-profile
 
 _note:_ we need to exit the current shell session, open again to use nix
 
-## 2. Nix-darwin module (Macos)
+## Nix-darwin module (Macos)
 
 nix-darwin is an opionated set of modules for managing configuration of macOS. It provides a centralized nix file for declaring system state.
 [refer](https://dev.jmgilman.com/environment/tools/nix/nix-darwin/)
@@ -47,7 +47,7 @@ mkidr ~/.config/nix
 
 _note:_ I go for the 1st criteria, after confirming that nix works in a stable state -> I will migrate it to my dotfiles
 
-## Flake (Package manager)
+## Flake
 
 Technically, a flake is a file system tree that contains a file named flake.nix in its root directory.
 [refer](https://nix.dev/concepts/flakes.html)
@@ -184,7 +184,7 @@ home.packages = [
   ];
 ```
 
-## NOTE:
+## Note
 
 - After init git for nix dir, need to add changed files to, if not, we can not rebuild using flake
 
@@ -203,7 +203,7 @@ nix-store --gc
   When I have new project, or new profiles, I just need to copy an existing profile (users), and
   remove, add things, customize it.
 
-### golang
+### Golang
 
 - Don't know why but it seems like we need to `unset GOROOT` (if not, go root will be pointed to wrong path)
 
@@ -223,7 +223,7 @@ Sometimes, I have trouble with node packages, they are not appeared in the path.
  export PATH="$HOME/.npm-global/bin:$PATH"
 ```
 
-- I think I can fix it by some extra command in the langs.nix file. But now I am quite lazy. lol
+- I think I can fix it by some extra commands in the langs.nix file. But now I am quite lazy. LOL
 
 ## Build from source.
 
