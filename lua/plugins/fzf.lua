@@ -15,10 +15,20 @@ return {
 					layout = "horizontal",
 				},
 			},
+			fzf_colors = {
+				true,
+				bg = "-1",
+				gutter = "-1",
+			},
 		})
 		vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "Find Files" })
 		vim.keymap.set("n", "<leader>pf", fzf.git_files, { desc = "Find Git Files" })
 		vim.keymap.set("n", "<leader>fg", fzf.live_grep, { desc = "Live Grep" })
+		vim.keymap.set("n", "<leader>fG", function()
+			require("fzf-lua").live_grep({
+				rg_opts = "--hidden --glob '!.git/*' --column --line-number --no-heading --color=always -e",
+			})
+		end, { desc = "Live Grep includes hidden files" })
 		vim.keymap.set("n", "<leader>fb", fzf.buffers, { desc = "Buffers" })
 		vim.keymap.set("n", "<leader>fh", fzf.help_tags, { desc = "Help Tags" })
 		vim.keymap.set("n", "<leader>fs", function()
