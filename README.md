@@ -232,3 +232,17 @@ nix packages, so I built it from source.
 [refer](/users/hvn/go.nix)
 
 - I also did it with some packages like im-select,...
+
+## Sub-tree
+
+Since I use home manager to keep the setting of any tools as their original flavor. I try to use git subtree to link the existing settings in my dotfiles repo to this repo. Use git submodule is easier but I don't want to get every thing. -> git subtree will be the best option.
+
+- example with nvim plugins
+
+```shell
+git remote add nvim-lua  https://github.com/kunkka19xx/dotfiles.git
+```
+
+```shell
+git fetch nvim-lua
+```
