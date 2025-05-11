@@ -1,5 +1,0 @@
-{
-    "diagnostics.disable": [
-        "cast-local-type"
-    ]
-}
