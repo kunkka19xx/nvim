@@ -36,5 +36,4 @@ git subtree push --prefix=nvim/.config/nvim nvim-config main
 ```shell
 git fetch nvim
 git subtree pull --prefix=nvim/.config/nvim nvim main --squash
-
 ```
