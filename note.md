@@ -27,3 +27,14 @@ git subtree push --prefix=nvim/.config/nvim nvim-config main
 ```
 
 - If you want to sync anyway, remove --squash from 2nd step
+
+4. Pull changes from child repo
+
+- fetch remote
+- pull with right prefix
+
+```shell
+git fetch nvim
+git subtree pull --prefix=nvim/.config/nvim nvim main --squash
+
+```
