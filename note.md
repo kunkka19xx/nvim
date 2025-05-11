@@ -23,7 +23,7 @@ git subtree add --prefix=nvim/.config/nvim nvim main --squash
    Be careful with the prefix (this should be correct)
 
 ```shell
-git subtree push --prefix=nvim/.config/nvim nvim-config main
+git subtree push --prefix=nvim/.config/nvim nvim main
 ```
 
 - If you want to sync anyway, remove --squash from 2nd step
