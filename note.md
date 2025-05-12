@@ -1,4 +1,6 @@
 - Use this as a sub module using sub tree
+  [refer atlassian](https://www.atlassian.com/git/tutorials/git-subtree)
+  [refer git](https://docs.github.com/en/get-started/using-git/about-git-subtree-merges)
 
 1. Add remote in the parent repo
 
@@ -18,12 +20,6 @@ Please remove the old nvim in the parent repo
 git subtree add --prefix=nvim/.config/nvim nvim main --squash
 ```
 
-_in the nix repo_
-
-```shell
-git subtree add --prefix=dotfiles/nvim nvim main --squash
-```
-
 - This command adds child repo (remote name, main branch) into the `nvim/.config/nvim` directory in the parent repo
 
 _in the nix repo_
@@ -38,15 +34,12 @@ Be careful with the prefix (this should be correct)
 
 ```shell
 git subtree push --prefix=nvim/.config/nvim nvim main
-<<<<<<< HEAD
-=======
 ```
 
-or
+or (nix repo)
 
 ```shell
 git subtree push --prefix=dotfiles/nvim nvim main
->>>>>>> ff9f0a25c0d7c067f41b8f2aef0d857d225a3cb9
 ```
 
 - If you want to sync anyway, remove --squash from 2nd step
@@ -59,4 +52,12 @@ git subtree push --prefix=dotfiles/nvim nvim main
 ```shell
 git fetch nvim
 git subtree pull --prefix=nvim/.config/nvim nvim main --squash
+```
+
+or (nix repo)
+
+```shell
+git fetch nvim
+git subtree pull --prefix=dotfiles/nvim nvim main --squash
+
 ```
